@@ -1,9 +1,3 @@
-/*
-KEYS
-$Env:AWS_ACCESS_KEY_ID="AKIARPDZ4MT7I4F7JHEL"
-$Env:AWS_SECRET_ACCESS_KEY="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"
-*/
-
 terraform {
   required_providers {
     aws = {
@@ -16,7 +10,7 @@ terraform {
 provider "aws" {
   region = "us-west-2"
 }
-//https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/instance
+
 data "aws_ami" "ubuntu" {
   most_recent = true
 
@@ -108,8 +102,6 @@ resource "aws_nat_gateway" "nat" {
     Name = "NAT"
   }
 
-  # To ensure proper ordering, it is recommended to add an explicit dependency
-  # on the Internet Gateway for the VPC.
   depends_on = [aws_internet_gateway.gw]
 }
 
